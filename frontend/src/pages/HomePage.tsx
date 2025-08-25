@@ -47,6 +47,14 @@ import Planet from '../assets/images/Planet.svg';
 import Swatches from '../assets/images/Swatches.svg';
 import { IoEyeOutline } from "react-icons/io5";
 import heroanimation from '../assets/images/heroanimation.gif';
+import Button from '../components/button/Button'; 
+import Input from '../components/inputs/Input';
+import NFTCard from '../components/NFTCard';
+import CreatorCard from '../components/CreatorCard';
+import CategoryCard from '../components/CategoryCard';
+import TrendingNFTCard from '../components/TrendingNFTCard';
+import HowItWorksCard from '../components/HowItWorksCard';
+import NewsletterInput from '../components/inputs/NewsletterInput';
 
 function HomePage() {
   return (
@@ -61,10 +69,14 @@ function HomePage() {
           <p className="homepage-hero-desc">
             NFT Marketplace UI Created With Anima For Figma. Collect, Buy And Sell Art From More Than 20k NFT Artists.
           </p>
-          <button className="homepage-hero-btn">
+          <Button
+            variant="primary"
+            size="lg"
+            sxclass="homepage-hero-btn"
+          >
             <LuRocket size={20} />
             Get Started
-          </button>
+          </Button>
           <div className="homepage-hero-stats">
             <div>
               <div className="homepage-hero-statnum">240k+</div>
@@ -93,54 +105,39 @@ function HomePage() {
         <h2 className="homepage-section-title">Trending Collection</h2>
         <p className="homepage-section-desc">Checkout Our Weekly Updated Trending Collection.</p>
         <div className="homepage-trending-cards">
-          {/* Card 1 */}
-          <div className="homepage-trending-card">
-            <div className="homepage-trending-card-imgwrap">
-              <img src={dog} alt="DSGN Animals" className="homepage-trending-mainimg" />
-            </div>
-            <div className="homepage-trending-thumbs">
-              <img src={cat} alt="DSGN Animals 1" className="homepage-trending-thumb" />
-              <img src={bear} alt="DSGN Animals 2" className="homepage-trending-thumb" />
-              <div className="homepage-trending-thumb homepage-trending-thumb-count">1025+</div>
-            </div>
-            <div className="homepage-trending-title">DSGN Animals</div>
-            <div className="homepage-trending-artist">
-              <img src={mrfox} alt="MrFox" className="homepage-trending-artist-img" />
-              <span className="homepage-trending-artist-name">MrFox</span>
-            </div>
-          </div>
-          {/* Card 2 */}
-          <div className="homepage-trending-card">
-            <div className="homepage-trending-card-imgwrap">
-              <img src={mushroom1} alt="Magic Mushrooms" className="homepage-trending-mainimg" />
-            </div>
-            <div className="homepage-trending-thumbs">
-              <img src={mushroom2} alt="Magic Mushrooms 1" className="homepage-trending-thumb" />
-              <img src={mushroom3} alt="Magic Mushrooms 2" className="homepage-trending-thumb" />
-              <div className="homepage-trending-thumb homepage-trending-thumb-count">1025+</div>
-            </div>
-            <div className="homepage-trending-title">Magic Mushrooms</div>
-            <div className="homepage-trending-artist">
-              <img src={shroomie} alt="Shroomie" className="homepage-trending-artist-img" />
-              <span className="homepage-trending-artist-name">Shroomie</span>
-            </div>
-          </div>
-          {/* Card 3 */}
-          <div className="homepage-trending-card">
-            <div className="homepage-trending-card-imgwrap">
-              <img src={robot1} alt="Disco Machines" className="homepage-trending-mainimg" />
-            </div>
-            <div className="homepage-trending-thumbs">
-              <img src={robot2} alt="Disco Machines 1" className="homepage-trending-thumb" />
-              <img src={robot3} alt="Disco Machines 2" className="homepage-trending-thumb" />
-              <div className="homepage-trending-thumb homepage-trending-thumb-count">1025+</div>
-            </div>
-            <div className="homepage-trending-title">Disco Machines</div>
-            <div className="homepage-trending-artist">
-              <img src={robotica} alt="BeKind2Robots" className="homepage-trending-artist-img" />
-              <span className="homepage-trending-artist-name">BeKind2Robots</span>
-            </div>
-          </div>
+          <TrendingNFTCard
+            mainImg={dog}
+            thumbs={[
+              { src: cat, alt: "DSGN Animals 1" },
+              { src: bear, alt: "DSGN Animals 2" }
+            ]}
+            thumbCount="1025+"
+            title="DSGN Animals"
+            artistImg={mrfox}
+            artistName="MrFox"
+          />
+          <TrendingNFTCard
+            mainImg={mushroom1}
+            thumbs={[
+              { src: mushroom2, alt: "Magic Mushrooms 1" },
+              { src: mushroom3, alt: "Magic Mushrooms 2" }
+            ]}
+            thumbCount="1025+"
+            title="Magic Mushrooms"
+            artistImg={shroomie}
+            artistName="Shroomie"
+          />
+          <TrendingNFTCard
+            mainImg={robot1}
+            thumbs={[
+              { src: robot2, alt: "Disco Machines 1" },
+              { src: robot3, alt: "Disco Machines 2" }
+            ]}
+            thumbCount="1025+"
+            title="Disco Machines"
+            artistImg={robotica}
+            artistName="BeKind2Robots"
+          />
         </div>
       </section>
       {/* Top Creators Section */}
@@ -150,10 +147,14 @@ function HomePage() {
             <h2 className="homepage-section-title">Top Creators</h2>
             <p className="homepage-section-desc">Checkout Top Rated Creators On The NFT Marketplace</p>
           </div>
-          <button className="homepage-creators-btn">
-            <LuRocket size={20} color="#A259FF" />
+          <Button
+            variant="primary"
+            size="md"
+            sxclass="homepage-creators-btn"
+          >
+            <LuRocket size={20} color="#A259FF" /> 
             View Rankings
-          </button>
+          </Button>
         </div>
         <div className="homepage-creators-grid my-10">
           {[
@@ -170,12 +171,13 @@ function HomePage() {
             { name: 'Dotgu', img: dotgu },
             { name: 'Ghiblier', img: ghiblier },
           ].map((creator, i) => (
-            <div key={creator.name} className="homepage-creator-card">
-              <div className="homepage-creator-rank">{i + 1}</div>
-              <img src={creator.img} alt={creator.name} className="homepage-creator-img" />
-              <div className="homepage-creator-name">{creator.name}</div>
-              <div className="homepage-creator-sales">Total Sales: <span>34.53 ETH</span></div>
-            </div>
+            <CreatorCard
+              key={creator.name}
+              rank={i + 1}
+              img={creator.img}
+              name={creator.name}
+              sales="34.53 ETH"
+            />
           ))}
         </div>
       </section>
@@ -183,54 +185,23 @@ function HomePage() {
       <section className="homepage-section homepage-categories">
         <h2 className="homepage-section-title">Browse Categories</h2>
         <div className="homepage-categories-grid">
-          {/* Art */}
-          <div className="homepage-category-card">
-            <img src={art} alt="Art" className="homepage-category-img" />
-            <img src={PaintBrush} alt="PaintBrush" className="homepage-category-icon" />
-            <div className="homepage-category-label">Art</div>
-          </div>
-          {/* Collectibles */}
-          <div className="homepage-category-card">
-            <img src={collectible} alt="Collectibles" className="homepage-category-img" />
-            <img src={Swatches} alt="Swatches" className="homepage-category-icon" />
-            <div className="homepage-category-label">Collectibles</div>
-          </div>
-          {/* Music */}
-          <div className="homepage-category-card">
-            <img src={music} alt="Music" className="homepage-category-img" />
-            <img src={MusicNote} alt="MusicNote" className="homepage-category-icon" />
-            <div className="homepage-category-label">Music</div>
-          </div>
-          {/* Photography */}
-          <div className="homepage-category-card">
-            <img src={photography} alt="Photography" className="homepage-category-img" />
-            <img src={Camera} alt="Camera" className="homepage-category-icon" />
-            <div className="homepage-category-label">Photography</div>
-          </div>
-          {/* Video */}
-          <div className="homepage-category-card">
-            <img src={video} alt="Video" className="homepage-category-img" />
-            <img src={video1} alt="video1" className="homepage-category-icon" />
-            <div className="homepage-category-label">Video</div>
-          </div>
-          {/* Utility */}
-          <div className="homepage-category-card">
-            <img src={utility} alt="Utility" className="homepage-category-img" />
-            <img src={MagicWand} alt="UtilityIcon" className="homepage-category-icon" />
-            <div className="homepage-category-label">Utility</div>
-          </div>
-          {/* Sport */}
-          <div className="homepage-category-card">
-            <img src={sport} alt="Sport" className="homepage-category-img" />
-            <img src={Basketball} alt="Basketball" className="homepage-category-icon" />
-            <div className="homepage-category-label">Sport</div>
-          </div>
-          {/* Virtual Worlds */}
-          <div className="homepage-category-card">
-            <img src={virtualworld} alt="Virtual Worlds" className="homepage-category-img" />
-            <img src={Planet} alt="VirtualWorldsIcon" className="homepage-category-icon" />
-            <div className="homepage-category-label">Virtual Worlds</div>
-          </div>
+          {[
+            { img: art, icon: PaintBrush, label: "Art" },
+            { img: collectible, icon: Swatches, label: "Collectibles" },
+            { img: music, icon: MusicNote, label: "Music" },
+            { img: photography, icon: Camera, label: "Photography" },
+            { img: video, icon: video1, label: "Video" },
+            { img: utility, icon: MagicWand, label: "Utility" },
+            { img: sport, icon: Basketball, label: "Sport" },
+            { img: virtualworld, icon: Planet, label: "Virtual Worlds" },
+          ].map((cat, idx) => (
+            <CategoryCard
+              key={cat.label}
+              img={cat.img}
+              icon={cat.icon}
+              label={cat.label}
+            />
+          ))}
         </div>
       </section>
       {/* Discover More NFTs Section */}
@@ -240,75 +211,52 @@ function HomePage() {
             <h2 className="homepage-section-title">Discover More NFTs</h2>
             <p className="homepage-section-desc">Explore New Trending NFTs</p>
           </div>
-          <button className="homepage-discover-btn">
+          <Button
+            variant="primary"
+            size="md"
+            sxclass="homepage-discover-btn"
+          >
             <IoEyeOutline size={20} color="#A259FF" />
             See All
-          </button>
+          </Button>
         </div>
         <div className="homepage-discover-cards">
-          {/* NFT Card 1 */}
-          <div className="homepage-discover-card">
-            <img src={distantgalaxy} alt="NFT 1" className="homepage-discover-img" />
-            <div className="homepage-discover-info">
-              <div className="homepage-discover-title">Distant Galaxy</div>
-              <div className="homepage-discover-artist">
-                <img src={animakid} alt="NFT Artist" className="homepage-discover-artist-img" />
-                <span className="homepage-discover-artist-name">Animakid</span>
-              </div>
-              <div className="homepage-discover-prices">
-                <div>
-                  <div className="homepage-discover-price-label">Price</div>
-                  <div className="homepage-discover-price">1.63 ETH</div>
-                </div>
-                <div>
-                  <div className="homepage-discover-price-label">Highest Bid</div>
-                  <div className="homepage-discover-price">0.33 wETH</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* NFT Card 2 */}
-          <div className="homepage-discover-card">
-            <img src={lifeonedena} alt="NFT 2" className="homepage-discover-img" />
-            <div className="homepage-discover-info">
-              <div className="homepage-discover-title">Life on Edena</div>
-              <div className="homepage-discover-artist">
-                <img src={dotgu} alt="NFT Artist" className="homepage-discover-artist-img" />
-                <span className="homepage-discover-artist-name">Dotgu</span>
-              </div>
-              <div className="homepage-discover-prices">
-                <div>
-                  <div className="homepage-discover-price-label">Price</div>
-                  <div className="homepage-discover-price">1.63 ETH</div>
-                </div>
-                <div>
-                  <div className="homepage-discover-price-label">Highest Bid</div>
-                  <div className="homepage-discover-price">0.33 wETH</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* NFT Card 3 */}
-          <div className="homepage-discover-card">
-            <img src={astrofiction} alt="NFT 3" className="homepage-discover-img" />
-            <div className="homepage-discover-info">
-              <div className="homepage-discover-title">Astrofiction</div>
-              <div className="homepage-discover-artist">
-                <img src={astronaut} alt="NFT Artist" className="homepage-discover-artist-img" />
-                <span className="homepage-discover-artist-name">Astronaut</span>
-              </div>
-              <div className="homepage-discover-prices">
-                <div>
-                  <div className="homepage-discover-price-label">Price</div>
-                  <div className="homepage-discover-price">1.63 ETH</div>
-                </div>
-                <div>
-                  <div className="homepage-discover-price-label">Highest Bid</div>
-                  <div className="homepage-discover-price">0.33 wETH</div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {[
+            {
+              img: distantgalaxy,
+              title: "Distant Galaxy",
+              artistImg: animakid,
+              artistName: "Animakid",
+              price: "1.63 ETH",
+              highestBid: "0.33 wETH"
+            },
+            {
+              img: lifeonedena,
+              title: "Life on Edena",
+              artistImg: dotgu,
+              artistName: "Dotgu",
+              price: "1.63 ETH",
+              highestBid: "0.33 wETH"
+            },
+            {
+              img: astrofiction,
+              title: "Astrofiction",
+              artistImg: astronaut,
+              artistName: "Astronaut",
+              price: "1.63 ETH",
+              highestBid: "0.33 wETH"
+            }
+          ].map((nft, idx) => (
+            <NFTCard
+              key={nft.title}
+              img={nft.img}
+              title={nft.title}
+              artistImg={nft.artistImg}
+              artistName={nft.artistName}
+              price={nft.price}
+              highestBid={nft.highestBid}
+            />
+          ))}
         </div>
       </section>
       {/* Highlight Section */}
@@ -334,10 +282,14 @@ function HomePage() {
                 <span className="homepage-highlight-artist-label">Shroomie</span>
               </div>
               <h2 className="homepage-highlight-title">Magic Mashrooms</h2>
-              <button className="homepage-highlight-btn">
+              <Button
+                variant="primary"
+                size="md"
+                sxclass="homepage-highlight-btn"
+              >
                 <IoEyeOutline color="#A259FF" />
                 See NFT
-              </button>
+              </Button>
             </div>
             <div className="homepage-highlight-auction">
               <div className="homepage-highlight-auction-label">Auction ends in:</div>
@@ -362,30 +314,30 @@ function HomePage() {
         <h2 className="homepage-section-title">How It Works</h2>
         <p className="homepage-section-desc">Find Out How To Get Started</p>
         <div className="homepage-howitworks-cards">
-          {/* Card 1 */}
-          <div className="homepage-howitworks-card">
-            <div className="homepage-howitworks-icon">
-              <img src={wallet} alt="wallet" />
-            </div>
-            <h3 className="homepage-howitworks-title">Setup Your Wallet</h3>
-            <p className="homepage-howitworks-desc">Set up your wallet of choice. Connect it to the Animarket by clicking the wallet icon in the top right corner.</p>
-          </div>
-          {/* Card 2 */}
-          <div className="homepage-howitworks-card">
-            <div className="homepage-howitworks-icon">
-              <img src={collection} alt="collection" />
-            </div>
-            <h3 className="homepage-howitworks-title">Create Collection</h3>
-            <p className="homepage-howitworks-desc">Upload your work and setup your collection. Add a description, social links and floor price.</p>
-          </div>
-          {/* Card 3 */}
-          <div className="homepage-howitworks-card">
-            <div className="homepage-howitworks-icon">
-              <img src={earning} alt="earning" />
-            </div>
-            <h3 className="homepage-howitworks-title">Start Earning</h3>
-            <p className="homepage-howitworks-desc">Choose between auctions and fixed-price listings. Start earning by selling your NFTs or trading others.</p>
-          </div>
+          {[
+            {
+              icon: wallet,
+              title: "Setup Your Wallet",
+              desc: "Set up your wallet of choice. Connect it to the Animarket by clicking the wallet icon in the top right corner."
+            },
+            {
+              icon: collection,
+              title: "Create Collection",
+              desc: "Upload your work and setup your collection. Add a description, social links and floor price."
+            },
+            {
+              icon: earning,
+              title: "Start Earning",
+              desc: "Choose between auctions and fixed-price listings. Start earning by selling your NFTs or trading others."
+            }
+          ].map((card, idx) => (
+            <HowItWorksCard
+              key={card.title}
+              icon={card.icon}
+              title={card.title}
+              desc={card.desc}
+            />
+          ))}
         </div>
       </section>
       {/* Subscribe Widget Section */}
@@ -395,13 +347,13 @@ function HomePage() {
           <div className="homepage-subscribe-content">
             <h2 className="homepage-subscribe-title">Join Our Weekly Digest</h2>
             <p className="homepage-subscribe-desc">Get Exclusive Promotions & Updates Straight To Your Inbox.</p>
-            <form className="homepage-subscribe-form">
-              <input type="email" placeholder="Enter your email here" className="homepage-subscribe-input" />
-              <button type="submit" className="homepage-subscribe-btn">
-                <svg width="20" height="20" fill="none" stroke="#fff" strokeWidth="2" viewBox="0 0 24 24"><path d="M4 4h16v16H4z" /><path d="M22 4L12 14.01 2 4" /></svg>
-                Subscribe
-              </button>
-            </form>
+            <NewsletterInput
+              label="Enter your email here"
+              buttonText="Subscribe"
+              onSubmit={email => {
+                // handle newsletter subscription logic here
+              }}
+            />
           </div>
         </div>
       </section>

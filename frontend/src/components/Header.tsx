@@ -1,45 +1,50 @@
 import '../index.css';
+import React, { useState } from 'react';
 import {
   Search,
   Sun,
   Moon,
-  Menu,
   Wallet,
   ShoppingBag,
   Trophy,
 } from 'lucide-react';
 import { AiOutlineShop, AiOutlineUser } from "react-icons/ai";
 import { useTheme } from '../context/ThemeProvider';
+import { useNavigate } from 'react-router-dom';
+import Button from './button/Button'; // Add this import
+import NavItem from './NavItem'; // Add this import
 
 const Header = () => {
   const {theme, toggleTheme} = useTheme();
+  const navigate = useNavigate();
   return (
     <header className="header">
       {/* Left: Logo and Title */}
       <div className="header-logo">
-        <AiOutlineShop size={28} color="#A259FF" />
-        NFT Marketplace
+        <AiOutlineShop style={{ color:'#A259FF' }} />NFT Marketplace
       </div>
       
       {/* Right: Navigation Links */}
       <nav className="header-nav">
-        <button
-          className="flex items-center cursor-pointer gap-2 border border-gray-600 rounded-md px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-      >
+        <Button
+          variant="secondary"
+          size="md"
+          sxclass="flex items-center cursor-pointer gap-2 border border-gray-600 rounded-md px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+        >
           <Search className="h-4 w-4 text-main" />
           <span className='text-sm'>NFTs</span>
-      </button>
+        </Button>
         {[
-          { name: 'Marketplace', category: 'marketplace', icon: ShoppingBag },
-          { name: 'Rankings', category: 'rankings', icon: Trophy },
-          { name: 'Connect a wallet', category: 'wallet', icon: Wallet },
+          { label: 'Marketplace', category: 'marketplace', icon: ShoppingBag },
+          { label: 'Rankings', category: 'rankings', icon: Trophy },
+          { label: 'Connect a wallet', category: 'wallet', icon: Wallet },
         ].map((item) => (
-          <div key={item.category} className="header-nav-item">
-            <a href="#" className="header-link" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              {item.icon && <item.icon size={16} />}
-              {item.name}
-            </a>
-          </div>
+          <NavItem
+            key={item.category}
+            icon={item.icon}
+            label={item.label}
+            href="#"
+          />
         ))}
         {/* Theme Toggle Switch */}
         <label className='switch theme-toggle' style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -53,14 +58,18 @@ const Header = () => {
           <span className="slider round"></span>
           <Moon size={16} color={theme === 'dark' ? '#A259FF' : '#888'} />
         </label>
-        {/* Right: Sign Up Button */}
-        <button className="header-signup-btn">
+        <Button
+          variant="primary"
+          size="md"
+          sxclass="header-signup-btn"
+          onClick={() => navigate('/login')}
+        >
           <AiOutlineUser size={20} />
           Sign Up
-        </button>
+        </Button>
       </nav>
     </header>
   );
 }
 
-export default Header
+export default Header;
